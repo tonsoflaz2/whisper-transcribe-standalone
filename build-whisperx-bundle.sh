@@ -19,6 +19,8 @@ fi
 # === STEP 0: Download and extract portable Python if needed ===
 if [[ ! -x "$PYTHON_STANDALONE_DIR/bin/python3" ]]; then
   echo "🐍 Downloading portable Python..."
+  echo "URL: $PYTHON_STANDALONE_URL"
+  echo "Output: $PYTHON_STANDALONE_TAR"
   curl -L "$PYTHON_STANDALONE_URL" -o "$PYTHON_STANDALONE_TAR"
   # Check if the file is a valid gzip archive
   if ! file "$PYTHON_STANDALONE_TAR" | grep -q 'gzip compressed data'; then
