@@ -1,6 +1,6 @@
 # ⚠️ Disclaimer
 
-**The goal of this project is to set up a standalone environment for local, free transcription using WhisperX. This setup installs software and dependencies on your system. You should always review the scripts and code before running anything, especially on production or sensitive systems!**
+**The goal of this project is to set up a standalone environment for local, free transcription using WhisperX. However, this setup does install software (ffmpeg and pyenv at least) on your system. It tries to stay siloed but if you see a reason this is not safe please correct it or add it as an issue so oithers can evaluate! You should always review the scripts and code before running anything, especially on production or sensitive systems!**
 
 ---
 
