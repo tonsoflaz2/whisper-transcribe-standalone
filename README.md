@@ -26,17 +26,18 @@ This repository provides a safe, portable way to set up [WhisperX](https://githu
 
 ---
 
-## What's New: Fully Standalone with Portable Python
+## What's New: Fully Standalone with Portable Python 3.11
 
-- The setup script now **downloads and uses its own portable Python 3.9 interpreter** (from [python-build-standalone](https://github.com/indygreg/python-build-standalone)).
+- The setup script now **downloads and uses its own portable Python 3.11 interpreter** (from [python-build-standalone](https://github.com/indygreg/python-build-standalone)).
 - **No system Python or system packages are required or used.**
 - All dependencies (Python, virtual environment, packages, FFmpeg) are local to the project directory.
 - No root/sudo required.
+- **Python 3.11 is used for best compatibility with WhisperX and onnxruntime.**
 
 ## Files
 
 - **build-whisperx-bundle.sh**  
-  Installs all dependencies in a local bundle directory using a portable Python and virtual environment. Does not require root/sudo and will not affect system Python or packages.
+  Installs all dependencies in a local bundle directory using a portable Python 3.11 and virtual environment. Does not require root/sudo and will not affect system Python or packages.
 
 - **transcribe.py**  
   Transcribes audio/video files using WhisperX, outputting both a timestamped `.txt` transcript and an `.srt` subtitle file. Can be run manually or called from other scripts (e.g., PHP/Laravel).
@@ -56,11 +57,12 @@ cd whisper-transcribe-standalone
 
 ```bash
 chmod +x build-whisperx-bundle.sh
-./build-whisperx-bundle.sh
+./build-whisperx-bundle.sh --clean
 ```
 
 - This creates a `whisperx-bundle` directory with all dependencies and a local FFmpeg.
-- The script will also create a `python-standalone` directory with a portable Python interpreter.
+- The script will also create a `python-standalone` directory with a portable Python 3.11 interpreter.
+- Use the `--clean` option to remove any previous install and start fresh.
 
 ### 3. Activate the Virtual Environment
 
@@ -109,6 +111,7 @@ This repo is set up to only track `build-whisperx-bundle.sh`, `transcribe.py`, `
 - Safe for use on shared or production servers.
 - You can edit `transcribe.py` at any time without rerunning the setup.
 - The setup script will **never use or modify system Python**.
+- **Python 3.11 is used for best compatibility with WhisperX and onnxruntime.**
 
 ---
 
