@@ -6,6 +6,22 @@ BUNDLE_DIR="whisperx-bundle"
 PYTHON_VERSION="3.9"
 WHISPER_MODEL="medium"
 FFMPEG_URL="https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
+PYTHON_STANDALONE_URL="https://github.com/indygreg/python-build-standalone/releases/download/20240107/cpython-3.9.18+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz"
+PYTHON_STANDALONE_DIR="python-standalone"
+PYTHON_STANDALONE_TAR="python-standalone.tar.gz"
+
+# === STEP 0: Download and extract portable Python if needed ===
+if [[ ! -x "$PYTHON_STANDALONE_DIR/bin/python3" ]]; then
+  echo "🐍 Downloading portable Python..."
+  curl -L "$PYTHON_STANDALONE_URL" -o "$PYTHON_STANDALONE_TAR"
+  mkdir -p "$PYTHON_STANDALONE_DIR"
+  tar -xzf "$PYTHON_STANDALONE_TAR" -C "$PYTHON_STANDALONE_DIR" --strip-components=1
+  rm "$PYTHON_STANDALONE_TAR"
+else
+  echo "🐍 Portable Python already present."
+fi
+
+PYTHON_BIN="$(pwd)/$PYTHON_STANDALONE_DIR/bin/python3"
 
 # === SAFETY: Prevent running inside wrong virtualenv ===
 if [[ -n "$VIRTUAL_ENV" && "$VIRTUAL_ENV" != "$(pwd)/$BUNDLE_DIR/whisperx-env" ]]; then
@@ -29,10 +45,10 @@ fi
 
 cd "$BUNDLE_DIR"
 
-# === STEP 2: Virtualenv Setup ===
+# === STEP 2: Virtualenv Setup (using portable Python) ===
 if [[ ! -d "whisperx-env" ]]; then
-  echo "🐍 Creating Python $PYTHON_VERSION virtual environment..."
-  python3 -m venv whisperx-env
+  echo "🐍 Creating Python $PYTHON_VERSION virtual environment (standalone)..."
+  "$PYTHON_BIN" -m venv whisperx-env
 else
   echo "🐍 Virtual environment already exists. Reusing."
 fi

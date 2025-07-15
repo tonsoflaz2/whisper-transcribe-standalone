@@ -1,6 +1,6 @@
 # ⚠️ Disclaimer
 
-**The goal of this project is to set up a standalone environment for local, free transcription using WhisperX. However, this setup does install software (ffmpeg and pyenv at least) on your system. It tries to stay siloed but if you see a reason this is not safe please correct it or add it as an issue so oithers can evaluate! You should always review the scripts and code before running anything, especially on production or sensitive systems!**
+**The goal of this project is to set up a standalone environment for local, free transcription using WhisperX. However, this setup does install software (ffmpeg and a portable Python interpreter) on your system. It tries to stay siloed but if you see a reason this is not safe please correct it or add it as an issue so others can evaluate! You should always review the scripts and code before running anything, especially on production or sensitive systems!**
 
 ---
 
@@ -8,10 +8,17 @@
 
 This repository provides a safe, portable way to set up [WhisperX](https://github.com/m-bain/whisperx) for transcribing audio/video files (e.g., `.mp4`) to text and SRT subtitles, with **no system-wide dependencies**.
 
+## What's New: Fully Standalone with Portable Python
+
+- The setup script now **downloads and uses its own portable Python 3.9 interpreter** (from [python-build-standalone](https://github.com/indygreg/python-build-standalone)).
+- **No system Python or system packages are required or used.**
+- All dependencies (Python, virtual environment, packages, FFmpeg) are local to the project directory.
+- No root/sudo required.
+
 ## Files
 
 - **build-whisperx-bundle.sh**  
-  Installs all dependencies in a local bundle directory using a Python virtual environment. Does not require root/sudo and will not affect system Python or packages.
+  Installs all dependencies in a local bundle directory using a portable Python and virtual environment. Does not require root/sudo and will not affect system Python or packages.
 
 - **transcribe.py**  
   Transcribes audio/video files using WhisperX, outputting both a timestamped `.txt` transcript and an `.srt` subtitle file. Can be run manually or called from other scripts (e.g., PHP/Laravel).
@@ -35,6 +42,7 @@ chmod +x build-whisperx-bundle.sh
 ```
 
 - This creates a `whisperx-bundle` directory with all dependencies and a local FFmpeg.
+- The script will also create a `python-standalone` directory with a portable Python interpreter.
 
 ### 3. Activate the Virtual Environment
 
@@ -72,16 +80,17 @@ $output = shell_exec("bash -c '$cmd'");
 
 ## .gitignore
 
-This repo is set up to only track `build-whisperx-bundle.sh`, `transcribe.py`, `README.md`, and `.gitignore` itself. All other files and folders (including the bundle and outputs) are ignored.
+This repo is set up to only track `build-whisperx-bundle.sh`, `transcribe.py`, `README.md`, and `.gitignore` itself. All other files and folders (including the bundle, portable Python, and outputs) are ignored.
 
 ---
 
 ## Notes
 
 - No root/sudo required.
-- All dependencies are local to `whisperx-bundle`.
+- All dependencies are local to `whisperx-bundle` and `python-standalone`.
 - Safe for use on shared or production servers.
 - You can edit `transcribe.py` at any time without rerunning the setup.
+- The setup script will **never use or modify system Python**.
 
 ---
 
