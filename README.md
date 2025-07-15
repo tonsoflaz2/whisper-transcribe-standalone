@@ -23,8 +23,8 @@ This repository provides a safe, portable way to set up [WhisperX](https://githu
 ### 1. Clone or Download
 
 ```bash
-git clone <this-repo-url>
-cd <repo-directory>
+git clone https://github.com/tonsoflaz2/whisper-transcribe-standalone
+cd whisper-transcribe-standalone
 ```
 
 ### 2. Run the Setup Script
