@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+
+# But not these files!
+!build-whisperx-bundle.sh
+!transcribe.py
+
+# Allow .gitignore itself
+!.gitignore 
