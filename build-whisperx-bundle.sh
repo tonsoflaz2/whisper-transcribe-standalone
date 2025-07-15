@@ -6,7 +6,8 @@ BUNDLE_DIR="whisperx-bundle"
 PYTHON_VERSION="3.11"
 WHISPER_MODEL="medium"
 FFMPEG_URL="https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
-PYTHON_STANDALONE_URL="https://github.com/indygreg/python-build-standalone/releases/download/20240107/cpython-3.11.8+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz"
+# Use the latest available from astral-sh/python-build-standalone
+PYTHON_STANDALONE_URL="https://github.com/astral-sh/python-build-standalone/releases/download/20250712/cpython-3.11.13+20250712-x86_64-unknown-linux-gnu-install_only.tar.gz"
 PYTHON_STANDALONE_DIR="python-standalone"
 PYTHON_STANDALONE_TAR="python-standalone.tar.gz"
 
