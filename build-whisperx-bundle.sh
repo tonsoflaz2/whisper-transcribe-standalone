@@ -80,6 +80,9 @@ fi
 echo "⬆️  Upgrading pip..."
 pip install --upgrade pip
 
+echo "📦 Installing compatible numpy (pinned to 1.24.4 for wheel support)..."
+pip install numpy==1.24.4
+
 echo "📦 Installing PyTorch (CPU)..."
 pip install torch torchvision torchaudio
 
