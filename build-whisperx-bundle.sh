@@ -3,12 +3,18 @@ set -e
 
 # === CONFIG ===
 BUNDLE_DIR="whisperx-bundle"
-PYTHON_VERSION="3.9"
+PYTHON_VERSION="3.10"
 WHISPER_MODEL="medium"
 FFMPEG_URL="https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
-PYTHON_STANDALONE_URL="https://github.com/indygreg/python-build-standalone/releases/download/20240107/cpython-3.9.18+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz"
+PYTHON_STANDALONE_URL="https://github.com/indygreg/python-build-standalone/releases/download/20240107/cpython-3.10.13+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz"
 PYTHON_STANDALONE_DIR="python-standalone"
 PYTHON_STANDALONE_TAR="python-standalone.tar.gz"
+
+# === Optional: Clean install ===
+if [[ "$1" == "--clean" ]]; then
+  echo "🧹 Removing previous install..."
+  rm -rf "$BUNDLE_DIR" "$PYTHON_STANDALONE_DIR"
+fi
 
 # === STEP 0: Download and extract portable Python if needed ===
 if [[ ! -x "$PYTHON_STANDALONE_DIR/bin/python3" ]]; then
@@ -35,7 +41,7 @@ if [[ -d "$BUNDLE_DIR" ]]; then
   echo "⚠️  Bundle directory '$BUNDLE_DIR' already exists."
   read -p "Reuse existing directory and skip recreating it? (y/n): " reuse
   if [[ "$reuse" != "y" ]]; then
-    echo "❌ Aborting. Delete the folder or rename it first."
+    echo "❌ Aborting. Delete the folder or rename it first, or run with --clean."
     exit 1
   fi
 else

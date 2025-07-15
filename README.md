@@ -8,6 +8,24 @@
 
 This repository provides a safe, portable way to set up [WhisperX](https://github.com/m-bain/whisperx) for transcribing audio/video files (e.g., `.mp4`) to text and SRT subtitles, with **no system-wide dependencies**.
 
+## ⚡ Disk Space Requirements
+
+**You will need at least 2–3 GB of free disk space** to install and run this project with the default "medium" model. Breakdown:
+
+| Component         | Approx. Size |
+|-------------------|--------------|
+| Portable Python   | 50–100 MB    |
+| venv + deps       | 200–500 MB   |
+| PyTorch (CPU)     | 500–800 MB   |
+| WhisperX model    | 1.5 GB       |
+| FFmpeg            | 100 MB       |
+| **Total**         | **2–3 GB**   |
+
+- Using a larger model (e.g., "large") will require more space (2–3 GB+ for the model alone).
+- If you process many files or keep lots of outputs, you'll need additional space.
+
+---
+
 ## What's New: Fully Standalone with Portable Python
 
 - The setup script now **downloads and uses its own portable Python 3.9 interpreter** (from [python-build-standalone](https://github.com/indygreg/python-build-standalone)).
