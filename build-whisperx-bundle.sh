@@ -20,6 +20,12 @@ fi
 if [[ ! -x "$PYTHON_STANDALONE_DIR/bin/python3" ]]; then
   echo "🐍 Downloading portable Python..."
   curl -L "$PYTHON_STANDALONE_URL" -o "$PYTHON_STANDALONE_TAR"
+  # Check if the file is a valid gzip archive
+  if ! file "$PYTHON_STANDALONE_TAR" | grep -q 'gzip compressed data'; then
+    echo "❌ Downloaded file is not a valid gzip archive. Check your network or the download URL."
+    echo "File type: $(file "$PYTHON_STANDALONE_TAR")"
+    exit 1
+  fi
   mkdir -p "$PYTHON_STANDALONE_DIR"
   tar -xzf "$PYTHON_STANDALONE_TAR" -C "$PYTHON_STANDALONE_DIR" --strip-components=1
   rm "$PYTHON_STANDALONE_TAR"
