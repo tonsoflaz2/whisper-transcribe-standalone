@@ -1,3 +1,9 @@
+# ⚠️ Disclaimer
+
+**The goal of this project is to set up a standalone environment for local, free transcription using WhisperX. This setup installs software and dependencies on your system. You should always review the scripts and code before running anything, especially on production or sensitive systems!**
+
+---
+
 # WhisperX Transcription Bundle
 
 This repository provides a safe, portable way to set up [WhisperX](https://github.com/m-bain/whisperx) for transcribing audio/video files (e.g., `.mp4`) to text and SRT subtitles, with **no system-wide dependencies**.
@@ -66,7 +72,7 @@ $output = shell_exec("bash -c '$cmd'");
 
 ## .gitignore
 
-This repo is set up to only track `build-whisperx-bundle.sh`, `transcribe.py`, and `.gitignore` itself. All other files and folders (including the bundle and outputs) are ignored.
+This repo is set up to only track `build-whisperx-bundle.sh`, `transcribe.py`, `README.md`, and `.gitignore` itself. All other files and folders (including the bundle and outputs) are ignored.
 
 ---
 
